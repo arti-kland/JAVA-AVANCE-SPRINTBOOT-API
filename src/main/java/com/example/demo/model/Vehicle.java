@@ -1,9 +1,18 @@
 package com.example.demo.model;
 
-public class Vehicle {
+import javax.persistence.*;
 
+@Entity
+@Table(name="vehicle")
+public class Vehicle {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int Id;
+
+    @Column(name="brand")
     private String brand;
+
+    @Column(name="car_model")
     private String carModel;
 
     public Vehicle() {

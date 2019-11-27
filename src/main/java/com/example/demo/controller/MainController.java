@@ -1,11 +1,12 @@
 package com.example.demo.controller;
 
 import com.example.demo.dao.VehicleDao;
-import com.example.demo.dao.VehicleDaoImpl;
 import com.example.demo.model.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -25,21 +26,26 @@ public class MainController {
 
     //Vehicle/{id}
     @GetMapping(value = "Vehicle/{id}")
-    public Vehicle showVehicle(@PathVariable int id){
-
-        return vehicleDao.findById(id);
+    public Vehicle showVehicle(@PathVariable int id, HttpServletResponse response){
+        Vehicle vehicle = null;
+        try {
+            vehicle = vehicleDao.findById(id).orElseThrow(()->new Exception());
+        } catch (Exception e) {
+            response.setStatus(HttpStatus.NO_CONTENT.value());
+        }
+        return vehicle;
     }
     //Add vehicle
     @PostMapping(value = "/Vehicle")
     public Vehicle create(@RequestBody Vehicle vehicle) {
-        return vehicleDao.create(vehicle);
+        return vehicleDao.save(vehicle);
 
     }
 
     //Edit a Vehicle
     @PutMapping(value = "/Vehicle/{id}")
     public void update(@PathVariable int id, @RequestBody Vehicle vehicle) {
-        vehicleDao.updateVehicle(id, vehicle);
+        vehicleDao.save(vehicle);
     }
 
     //Delete by id

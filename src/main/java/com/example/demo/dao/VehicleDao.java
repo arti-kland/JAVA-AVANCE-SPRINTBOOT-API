@@ -1,19 +1,10 @@
 package com.example.demo.dao;
 
-import java.util.List;
 import com.example.demo.model.Vehicle;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface VehicleDao {
-
-
-    public List<Vehicle> findAll();
-
-    public Vehicle findById(int id);
-
-    public Vehicle create(Vehicle vehicle);
-
-    public Vehicle updateVehicle(int id, Vehicle updateVehicle);
-
-    public Vehicle deleteById(int id);
+@Repository
+public interface VehicleDao extends JpaRepository<Vehicle, Integer>{
 
 }
