@@ -16,7 +16,7 @@ public class VehicleDaoImpl implements VehicleDao {
         vehicles.add(new Vehicle(2, "Citroen", "C4"));
         vehicles.add(new Vehicle(3, "Ferrari", "Enzo"));
         vehicles.add(new Vehicle(4, "Fiat", "Tipo"));
-        vehicles.add(new Vehicle(4, "Peugot", "308"));
+        vehicles.add(new Vehicle(5, "Peugot", "308"));
     }
 
     //Find all Vehicle
