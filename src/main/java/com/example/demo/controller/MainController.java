@@ -16,7 +16,7 @@ public class MainController {
     private VehicleDao vehicleDao;
 
 
-    //Vehicles All
+    //Find all Vehicles
     @GetMapping(value = "/Vehicles")
     public List<Vehicle> list() {
         List<Vehicle> all = vehicleDao.findAll();
@@ -24,7 +24,7 @@ public class MainController {
 
     }
 
-    //Vehicle/{id}
+    //Find Vehicle by {id}
     @GetMapping(value = "Vehicle/{id}")
     public Vehicle showVehicle(@PathVariable int id, HttpServletResponse response){
         Vehicle vehicle = null;
@@ -35,7 +35,7 @@ public class MainController {
         }
         return vehicle;
     }
-    //Add vehicle
+    //Add a new vehicle
     @PostMapping(value = "/Vehicle")
     public Vehicle create(@RequestBody Vehicle vehicle) {
         return vehicleDao.save(vehicle);
